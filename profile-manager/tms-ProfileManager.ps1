@@ -12,6 +12,8 @@
 # USAGE: 
 # .\tms-ProfileManager.ps1 (or EXE)
 # ...- --- .. -.. - .... . ...- .. .-.. .-.. .- .. -. 
+# TODO:
+# test with no profiles installed, deactivate buttons and list if needed
 
 # ...- --- .. -.. - .... . ...- .. .-.. .-.. .- .. -. 
 # FUNCTIONS
