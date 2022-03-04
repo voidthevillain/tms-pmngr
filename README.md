@@ -5,15 +5,28 @@ Teams tool for managing custom profiles.
 WindowsOS w/ PowerShell 5.1
 
 ### Install
-Download the bin\TEAMS - Profile Manager.exe file
+Download the bin\TMS - Profile Manager.exe file
 
 ### Run
-TEAMS - Profile Manager.exe
+TMS - Profile Manager.exe
 
 Or PowerShell: .\tms-ProfileManager.ps1
 
+### Create profile
+![Create profile](https://i.postimg.cc/qRGLHn8z/profiles-create.png "Create profile")
+
+### Start profile
+![Start profile](https://i.postimg.cc/SsZMGG67/profiles-start.png "Start profile")
+
+### Clear profile cache
+![Clear profile cache](https://i.postimg.cc/yNLxq8D7/profiles-cache.png "Clear profile cache")
+
+### Open profile location
+![Open profile location](https://i.postimg.cc/C1dCBKXK/profiles-location.png "Open profile location")
+
+
 ## Version
-1.0.0.4
+1.0.0.5
 
 ## Author
 Mihai Filip (voidthevillain)
