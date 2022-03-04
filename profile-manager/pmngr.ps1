@@ -12,8 +12,6 @@
 # USAGE: 
 # .\tms-ProfileManager.ps1 (or EXE)
 # ...- --- .. -.. - .... . ...- .. .-.. .-.. .- .. -. 
-# TODO:
-# test with no profiles installed, deactivate buttons and list if needed
 
 # ...- --- .. -.. - .... . ...- .. .-.. .-.. .- .. -. #
 # FUNCTIONS
@@ -2853,12 +2851,12 @@ $chkDev.Add_Checked({
 			write-host 'adal is checked'
 			$hooksJson = '{"settingsForWebApp":"ring=ring3_6", "authHoldUserOnAdal":true, "authMigrationRevertToAdal":true}'
 
-			Out-File -FilePath $path -InputObject $hooksJson
+			Out-File -FilePath $path -InputObject $hooksJson.trim()
 		} else {
 			write-host 'adal is not checked'
 			$hooksJson = '{"settingsForWebApp":"ring=ring3_6"}'
 
-			Out-File -FilePath $path -InputObject $hooksJson
+			Out-File -FilePath $path -InputObject $hooksJson.trim()
 		}
 	}
 })
@@ -2872,14 +2870,14 @@ $chkDev.Add_UnChecked({
 	} else {
 		if ($chkAdal.IsChecked) {
 			write-host 'adal is checked'
-			$hooksJson = '{"authHoldUserOnAdal":true, "authMigrationRevertToAdal":true}'
+			$hooksJson = '{"authHoldUserOnAdal":true, "authMigrationRevertToAdal":true, "settingsForWebApp":"ring=general"}'
 
-			Out-File -FilePath $path -InputObject $hooksJson
+			Out-File -FilePath $path -InputObject $hooksJson.trim()
 		} else {
 			write-host 'adal is not checked'
-			$hooksJson = ''
+			$hooksJson = '{"settingsForWebApp":"ring=general"}'
 
-			Out-File -FilePath $path -InputObject $hooksJson
+			Out-File -FilePath $path -InputObject $hooksJson.trim()
 		}
 	}
 })
@@ -2895,12 +2893,12 @@ $chkAdal.Add_Checked({
 			write-host 'dev is checked'
 			$hooksJson = '{"settingsForWebApp":"ring=ring3_6", "authHoldUserOnAdal":true, "authMigrationRevertToAdal":true}'
 
-			Out-File -FilePath $path -InputObject $hooksJson
+			Out-File -FilePath $path -InputObject $hooksJson.trim()
 		} else {
 			write-host 'dev is not checked'
-			$hooksJson = '{"authHoldUserOnAdal":true, "authMigrationRevertToAdal":true}'
+			$hooksJson = '{"settingsForWebApp":"ring=general", "authHoldUserOnAdal":true, "authMigrationRevertToAdal":true}'
 
-			Out-File -FilePath $path -InputObject $hooksJson
+			Out-File -FilePath $path -InputObject $hooksJson.trim()
 		}
 	}
 })
@@ -2916,12 +2914,12 @@ $chkAdal.Add_UnChecked({
 			write-host 'dev is checked'
 			$hooksJson = '{"settingsForWebApp":"ring=ring3_6"}'
 
-			Out-File -FilePath $path -InputObject $hooksJson
+			Out-File -FilePath $path -InputObject $hooksJson.trim()
 		} else {
 			write-host 'dev is not checked'
 			$hooksJson = ''
 
-			Out-File -FilePath $path -InputObject $hooksJson
+			Out-File -FilePath $path -InputObject $hooksJson.trim()
 		}
 	}
 })
