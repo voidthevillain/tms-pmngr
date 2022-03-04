@@ -69,7 +69,7 @@ Add-Type -AssemblyName System.Windows.Forms
 
 $TMSProfileManager               = New-Object system.Windows.Forms.Form
 $TMSProfileManager.ClientSize    = New-Object System.Drawing.Point(679,355)
-$TMSProfileManager.text          = "TEAMS - Profile Manager"
+$TMSProfileManager.text          = "TMS - Profile Manager"
 $TMSProfileManager.TopMost       = $false
 # $TMSProfileManager.icon          = "$($HOME)\Documents\WindowsPowerShell\teams.ico"
 $TMSProfileManager.icon          = [System.Drawing.Icon]::FromHandle((New-Object System.Drawing.Bitmap -argument $tmsi).GetHIcon())
