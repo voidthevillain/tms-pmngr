@@ -1,6 +1,6 @@
 # TEAMS - Profile Manager
 Teams tool for managing custom profiles.
-![TMS-NINJA](https://i.postimg.cc/3xSdyZTg/tms-ninja-stroke.png "TMS-NINJA") {: style="float:left"}
+![TMS-NINJA](https://i.postimg.cc/qqhGY7xF/tms-ninja-stroke-250.png "TMS-NINJA")
 
 ### Prerequisites
 WindowsOS w/ PowerShell 5.1
