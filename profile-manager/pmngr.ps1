@@ -2746,8 +2746,7 @@ $Xaml = @"
 <Button Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="369.9,247,0,0" Name="btnStart"/>
 <Button Content="Cache" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="479,247,0,0" Name="btnCache"/>
 <Button Content="Location" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="588,247,0,0" Name="btnLocation"/>
-<CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Content="DEV" Margin="230,250,0,0" Name="chkDev"/>
-<CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Content="ADAL" Margin="290,250,0,0" Name="chkAdal"/>
+
 <Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="New profile:" Margin="10,285,0,0" Name="lblNewProfile"/>
 <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="120" TextWrapping="Wrap" Margin="91,283,0,0" Name="txtNewProfile" VerticalScrollBarVisibility="Disabled" FlowDirection="LeftToRight"/>
 <Button Content="Create" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="588,285,0,0" Name="btnCreate"/>
@@ -2755,6 +2754,9 @@ $Xaml = @"
 </Grid>
 </Window>
 "@
+
+# <CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Content="DEV" Margin="230,250,0,0" Name="chkDev"/>
+# <CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Content="ADAL" Margin="290,250,0,0" Name="chkAdal"/>
 
 
 # ...- --- .. -.. - .... . ...- .. .-.. .-.. .- .. -. #
@@ -2808,8 +2810,8 @@ if ($listProfiles.Items[0] -eq "No custom profiles found. Please create one.") {
 	$btnCache.IsEnabled = $false
 	$btnLocation.IsEnabled = $false
 	$listProfiles.IsEnabled = $false
-	$chkDev.IsEnabled = $false
-	$chkAdal.IsEnabled = $false
+	# $chkDev.IsEnabled = $false
+	# $chkAdal.IsEnabled = $false
 }
 
 $listProfiles.Add_SelectionChanged({
@@ -2823,106 +2825,106 @@ $listProfiles.Add_SelectionChanged({
 		}
 	}
 
-	# DEV
-	if ($hooks.settingsForWebApp -eq 'ring=ring3_6') {
-		$chkDev.IsChecked = $true
-	} else {
-		$chkDev.IsChecked = $false
-	}
+	# # DEV
+	# if ($hooks.settingsForWebApp -eq 'ring=ring3_6') {
+	# 	$chkDev.IsChecked = $true
+	# } else {
+	# 	$chkDev.IsChecked = $false
+	# }
 
-	# ADAL
-	if ($hooks.authHoldUserOnAdal -eq $true -AND $hooks.authMigrationRevertToAdal -eq $true) {
-		$chkAdal.IsChecked = $true
-	} else {
-		$chkAdal.IsChecked = $false
-	}
+	# # ADAL
+	# if ($hooks.authHoldUserOnAdal -eq $true -AND $hooks.authMigrationRevertToAdal -eq $true) {
+	# 	$chkAdal.IsChecked = $true
+	# } else {
+	# 	$chkAdal.IsChecked = $false
+	# }
 
   # write-host $txtSelectedProfile.text
 })
 
-$chkDev.Add_Checked({
-	write-host 'DEV checked'
-	$path = "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json"
+# $chkDev.Add_Checked({
+# 	write-host 'DEV checked'
+# 	$path = "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json"
 	
-	if ($txtSelectedProfile.text -eq '') {
-		Write-Host 'No profile selected to toggled Dev.'
-	} else {
-		if ($chkAdal.IsChecked) {
-			write-host 'adal is checked'
-			$hooksJson = '{"settingsForWebApp":"ring=ring3_6", "authHoldUserOnAdal":true, "authMigrationRevertToAdal":true}'
+# 	if ($txtSelectedProfile.text -eq '') {
+# 		Write-Host 'No profile selected to toggled Dev.'
+# 	} else {
+# 		if ($chkAdal.IsChecked) {
+# 			write-host 'adal is checked'
+# 			$hooksJson = '{"settingsForWebApp":"ring=ring3_6", "authHoldUserOnAdal":true, "authMigrationRevertToAdal":true}'
 
-			Out-File -FilePath $path -InputObject $hooksJson.trim()
-		} else {
-			write-host 'adal is not checked'
-			$hooksJson = '{"settingsForWebApp":"ring=ring3_6"}'
+# 			Out-File -FilePath $path -InputObject $hooksJson.trim()
+# 		} else {
+# 			write-host 'adal is not checked'
+# 			$hooksJson = '{"settingsForWebApp":"ring=ring3_6"}'
 
-			Out-File -FilePath $path -InputObject $hooksJson.trim()
-		}
-	}
-})
+# 			Out-File -FilePath $path -InputObject $hooksJson.trim()
+# 		}
+# 	}
+# })
 
-$chkDev.Add_UnChecked({
-	write-host 'DEV unchecked'
-	$path = "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json"
+# $chkDev.Add_UnChecked({
+# 	write-host 'DEV unchecked'
+# 	$path = "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json"
 
-	if ($txtSelectedProfile.text -eq '') {
-		Write-Host 'No profile selected to untoggled Dev.'
-	} else {
-		if ($chkAdal.IsChecked) {
-			write-host 'adal is checked'
-			$hooksJson = '{"authHoldUserOnAdal":true, "authMigrationRevertToAdal":true, "settingsForWebApp":"ring=general"}'
+# 	if ($txtSelectedProfile.text -eq '') {
+# 		Write-Host 'No profile selected to untoggled Dev.'
+# 	} else {
+# 		if ($chkAdal.IsChecked) {
+# 			write-host 'adal is checked'
+# 			$hooksJson = '{"authHoldUserOnAdal":true, "authMigrationRevertToAdal":true, "settingsForWebApp":"ring=general"}'
 
-			Out-File -FilePath $path -InputObject $hooksJson.trim()
-		} else {
-			write-host 'adal is not checked'
-			$hooksJson = '{"settingsForWebApp":"ring=general"}'
+# 			Out-File -FilePath $path -InputObject $hooksJson.trim()
+# 		} else {
+# 			write-host 'adal is not checked'
+# 			$hooksJson = '{"settingsForWebApp":"ring=general"}'
 
-			Out-File -FilePath $path -InputObject $hooksJson.trim()
-		}
-	}
-})
+# 			Out-File -FilePath $path -InputObject $hooksJson.trim()
+# 		}
+# 	}
+# })
 
-$chkAdal.Add_Checked({
-	write-host 'ADAL checked'
-	$path = "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json"
+# $chkAdal.Add_Checked({
+# 	write-host 'ADAL checked'
+# 	$path = "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json"
 
-	if ($txtSelectedProfile.text -eq '') {
-		Write-Host 'No profile selected to toggle Adal.'
-	} else {
-		if ($chkDev.IsChecked) {
-			write-host 'dev is checked'
-			$hooksJson = '{"settingsForWebApp":"ring=ring3_6", "authHoldUserOnAdal":true, "authMigrationRevertToAdal":true}'
+# 	if ($txtSelectedProfile.text -eq '') {
+# 		Write-Host 'No profile selected to toggle Adal.'
+# 	} else {
+# 		if ($chkDev.IsChecked) {
+# 			write-host 'dev is checked'
+# 			$hooksJson = '{"settingsForWebApp":"ring=ring3_6", "authHoldUserOnAdal":true, "authMigrationRevertToAdal":true}'
 
-			Out-File -FilePath $path -InputObject $hooksJson.trim()
-		} else {
-			write-host 'dev is not checked'
-			$hooksJson = '{"settingsForWebApp":"ring=general", "authHoldUserOnAdal":true, "authMigrationRevertToAdal":true}'
+# 			Out-File -FilePath $path -InputObject $hooksJson.trim()
+# 		} else {
+# 			write-host 'dev is not checked'
+# 			$hooksJson = '{"settingsForWebApp":"ring=general", "authHoldUserOnAdal":true, "authMigrationRevertToAdal":true}'
 
-			Out-File -FilePath $path -InputObject $hooksJson.trim()
-		}
-	}
-})
+# 			Out-File -FilePath $path -InputObject $hooksJson.trim()
+# 		}
+# 	}
+# })
 
-$chkAdal.Add_UnChecked({
-	write-host 'ADAL unchecked'
-	$path = "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json"
+# $chkAdal.Add_UnChecked({
+# 	write-host 'ADAL unchecked'
+# 	$path = "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json"
 
-	if ($txtSelectedProfile.text -eq '') {
-		Write-Host 'No profile selected to untoggle Adal.'
-	} else {
-		if ($chkDev.IsChecked) {
-			write-host 'dev is checked'
-			$hooksJson = '{"settingsForWebApp":"ring=ring3_6"}'
+# 	if ($txtSelectedProfile.text -eq '') {
+# 		Write-Host 'No profile selected to untoggle Adal.'
+# 	} else {
+# 		if ($chkDev.IsChecked) {
+# 			write-host 'dev is checked'
+# 			$hooksJson = '{"settingsForWebApp":"ring=ring3_6"}'
 
-			Out-File -FilePath $path -InputObject $hooksJson.trim()
-		} else {
-			write-host 'dev is not checked'
-			$hooksJson = ''
+# 			Out-File -FilePath $path -InputObject $hooksJson.trim()
+# 		} else {
+# 			write-host 'dev is not checked'
+# 			$hooksJson = ''
 
-			Out-File -FilePath $path -InputObject $hooksJson.trim()
-		}
-	}
-})
+# 			Out-File -FilePath $path -InputObject $hooksJson.trim()
+# 		}
+# 	}
+# })
 
 $btnStart.Add_Click({
   $scriptPath = "$($HOME)\Documents\WindowsPowerShell\tms-CustomProfiles.ps1"
