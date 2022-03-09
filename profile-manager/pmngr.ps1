@@ -2967,8 +2967,8 @@ $btnCreate.Add_Click({
 		$btnCache.IsEnabled = $true
 		$btnLocation.IsEnabled = $true
 		$listProfiles.IsEnabled = $true
-		$chkDev.IsEnabled = $true
-		$chkAdal.IsEnabled = $true
+		# $chkDev.IsEnabled = $true
+		# $chkAdal.IsEnabled = $true
 	}
 
   if ($profileName -eq "") {
