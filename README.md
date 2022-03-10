@@ -2,18 +2,16 @@
 ![TMS-NINJA](https://i.postimg.cc/qqhGY7xF/tms-ninja-stroke-250.png "TMS-NINJA")
 
 ### Description
-Teams tool for managing custom profiles.
+Tool for managing Teams profiles.
 
 ### Prerequisites
 WindowsOS w/ PowerShell 5.1
 
 ### Install
-Download the bin\TMS - Profile Manager.exe file
+Download tms-pmngr.exe
 
 ### Run
-TMS - Profile Manager.exe
-
-Or PowerShell: .\tms-ProfileManager.ps1
+tms-pmngr.exe
 
 ### Create profile
 ![Create profile](https://i.postimg.cc/qRGLHn8z/profiles-create.png "Create profile")
@@ -29,7 +27,7 @@ Or PowerShell: .\tms-ProfileManager.ps1
 
 
 ## Version
-1.0.0.5
+2.0.0.1
 
 ## Author
 Mihai Filip (voidthevillain)
@@ -38,4 +36,4 @@ Mihai Filip (voidthevillain)
 MIT.
 
 ## Credits
-https://gist.github.com/DanielSmon/cc3fa072857f0272257a5fd451768c3a
+CMD version - https://gist.github.com/DanielSmon/cc3fa072857f0272257a5fd451768c3a
