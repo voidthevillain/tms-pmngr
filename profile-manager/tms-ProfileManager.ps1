@@ -71,7 +71,6 @@ $TMSProfileManager               = New-Object system.Windows.Forms.Form
 $TMSProfileManager.ClientSize    = New-Object System.Drawing.Point(679,355)
 $TMSProfileManager.text          = "TMS - Profile Manager"
 $TMSProfileManager.TopMost       = $false
-# $TMSProfileManager.icon          = "$($HOME)\Documents\WindowsPowerShell\teams.ico"
 $TMSProfileManager.icon          = [System.Drawing.Icon]::FromHandle((New-Object System.Drawing.Bitmap -argument $tmsi).GetHIcon())
 $TMSProfileManager.BackColor     = [System.Drawing.ColorTranslator]::FromHtml("#ffffff")
 $TMSProfileManager.FormBorderStyle    = 'Fixed3D'
@@ -183,7 +182,6 @@ $listProfiles.Add_SelectedIndexChanged({
 })
 
 $btnStart.Add_Click({
-  $scriptPath = "$($HOME)\Documents\WindowsPowerShell\tms-CustomProfiles.ps1"
 
   if ($txtProfileName.Text -eq "") {
     Write-Host 'No profile selected to start.'
@@ -214,7 +212,6 @@ $btnLocation.Add_Click({
 })
 
 $btnCreate.Add_Click({
-  $scriptPath = "$($HOME)\Documents\WindowsPowerShell\tms-CustomProfiles.ps1"
   $profileName = $txtNewProfile.Text
 
   if ($listProfiles.Items[0] -eq "No custom profiles found. Please create one.") {
@@ -236,9 +233,6 @@ $btnCreate.Add_Click({
 
 $TMSProfileManager.controls.AddRange(@($Label1,$listProfiles,$Label2,$lblSelectedProfile,$btnStart,$btnCache,$btnLocation,$Label3,$txtNewProfile,$btnCreate,$txtProfileName))
 # ...- --- .. -.. - .... . ...- .. .-.. .-.. .- .. -. 
-#region Logic 
-
-#endregion
 
 [void]$TMSProfileManager.ShowDialog()
 # ...- --- .. -.. - .... . ...- .. .-.. .-.. .- .. -. 
