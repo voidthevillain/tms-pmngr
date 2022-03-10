@@ -59,7 +59,7 @@ Function Get-CustomProfiles {
 Add-Type -AssemblyName PresentationCore, PresentationFramework
 
 $Xaml = @"
-<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Width="725" Height="363" Name="TMSProfileManager" Title="tms-pmngr" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"><Window.Resources>
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Width="715" Height="355" Name="TMSProfileManager" Title="tms-pmngr" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"><Window.Resources>
 	<ResourceDictionary>
 		<ResourceDictionary.MergedDictionaries>
 			<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  mc:Ignorable="d">
