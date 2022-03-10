@@ -10,7 +10,7 @@
 # Dependencies: WinOS
 # ...- --- .. -.. - .... . ...- .. .-.. .-.. .- .. -. 
 # USAGE: 
-# .\pmngr.ps1 (or EXE)
+# .\tms-pmngr.ps1 (or EXE)
 # ...- --- .. -.. - .... . ...- .. .-.. .-.. .- .. -. 
 
 # ...- --- .. -.. - .... . ...- .. .-.. .-.. .- .. -. #
@@ -2529,14 +2529,7 @@ $Window = [Windows.Markup.XamlReader]::Parse($Xaml)
 $xml.SelectNodes("//*[@Name]") | ForEach-Object { Set-Variable -Name $_.Name -Value $Window.FindName($_.Name) }
 
 $customProfiles = Get-CustomProfiles
-# $hooks = ''
 
-# $cmbAuth.Items.Add('WAM')
-# $cmbAuth.Items.Add('ADAL')
-# $cmbRing.Items.Add('General')
-# $cmbRing.Items.Add('Ring3_6')
-# $cmbAuth.SelectedIndex = $cmbAuth.Items.IndexOf('WAM')
-# $cmbRing.SelectedIndex = $cmbRing.Items.IndexOf('General')
 $cmbAuth.Visibility = 'Hidden'
 $cmbRing.Visibility = 'Hidden'
 $chkDev.Visibility = 'Hidden'
@@ -2560,9 +2553,6 @@ if ($listProfiles.Items[0] -eq "No custom profiles found. Please create one.") {
 	$btnLocation.IsEnabled = $false
 	$btnDelete.IsEnabled = $false
 	$listProfiles.IsEnabled = $false
-	# $cmbAuth.IsEnabled = $false
-	# $cmbRing.IsEnabled = $false
-	# $chkDev.IsEnabled = $false
 }
 #endregion
 
@@ -2591,184 +2581,7 @@ $Window.Icon = $bitmap
 $listProfiles.Add_SelectionChanged({
 	$txtSelectedProfile.text = $listProfiles.selectedItem
   $lblSelectedProfile.content = $txtSelectedProfile.text
-	# $hooks = ''
-	# $hooksExist = Test-Path "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json"
-
-	# if (!$hooksExist -AND $txtSelectedProfile.text -ne '') {
-	# 	$hooks = @{
-	# 		tms = 'ninja'
-	# 	}
-
-	# 	$hooks | convertto-json | set-content -path "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json"
-
-	# 	write-host "Created tms-ninja hooks.json for profile $($txtSelectedProfile.text)"
-	# }
-	
-	# if ($txtSelectedProfile.text -ne '') {
-	# 	$cpFiles = Get-ChildItem -path "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams"
-
-	# 	foreach ($cpf in $cpFiles) {
-	# 		if ($cpf.Name -eq 'hooks.json') {
-	# 			$hooks = Get-Content -path "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($lblSelectedProfile.content)\AppData\Roaming\Microsoft\Teams\hooks.json" | ConvertFrom-Json
-	# 		}
-	# 	}
-	# }
-
-	# Write-Host $hooks
-	# # DEV
-	# if ($hooks.developerMode -eq $true -AND $hooks.devMenuExtensionsEnabled -eq $true -AND $hooks.forceDebugMenuEnable -eq $true -AND $hooks.debugMenuDisabledV2 -eq $false) {
-	# 	$chkDev.IsChecked = $true
-	# } else {
-	# 	$chkDev.IsChecked = $false
-	# }
-	
-	# # AUTH
-	# if ($hooks.authHoldUserOnAdal -eq $true -AND $hooks.authMigrationRevertToAdal -eq $true) {
-	# 	$cmbAuth.SelectedIndex = $cmbAuth.Items.IndexOf('ADAL')
-	# } else {
-	# 	$cmbAuth.SelectedIndex = $cmbAuth.Items.IndexOf('WAM')
-	# }
-
-	# # RING
-	# if ($hooks.settingsForWebApp -eq "ring=general" -OR $hooks.settingsForWebApp -eq $null) {
-	# 	$cmbRing.SelectedIndex = $cmbRing.Items.IndexOf('General')
-	# } elseif ($hooks.settingsForWebApp -eq "ring=ring3_6") {
-	# 	$cmbRing.SelectedIndex = $cmbRing.Items.IndexOf('Ring3_6')
-	# }
 })
-
-# $chkDev.Add_Checked({
-# 	write-host 'Dev checked'
-# 	$path = "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json"
-
-# 	if ($txtSelectedProfile.text -eq '') {
-# 		Write-Host 'No profile selected to enable Dev for.'
-# 	} else {
-# 		Write-Host "Enabling Dev for profile $($txtSelectedProfile.text)"
-# 		$hooks = Get-Content -path "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json" | ConvertFrom-Json
-
-# 		try {
-# 			$hooks.developerMode = $true
-# 			$hooks.devMenuExtensionsEnabled = $true
-# 			$hooks.forceDebugMenuEnable = $true
-# 			$hooks.debugMenuDisabledV2 = $false
-# 		} catch {
-# 			$hooks | Add-Member -MemberType NoteProperty -Name 'developerMode' -Value $true
-# 			$hooks | Add-Member -MemberType NoteProperty -Name 'devMenuExtensionsEnabled' -Value $true
-# 			$hooks | Add-Member -MemberType NoteProperty -Name 'forceDebugMenuEnable' -Value $true
-# 			$hooks | Add-Member -MemberType NoteProperty -Name 'debugMenuDisabledV2' -Value $false
-# 		} finally {
-# 			$hooks | ConvertTo-Json | Set-Content $path
-# 		}
-# 	}
-# })
-
-# $chkDev.Add_UnChecked({
-# 	write-host 'Dev unchecked'
-
-# 	$path = "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json"
-
-# 	if ($txtSelectedProfile.text -eq '') {
-# 		Write-Host 'No profile selected to disable Dev for.'
-# 	} else {
-# 		Write-Host "Disabling Dev for profile $($txtSelectedProfile.text)"
-# 		$hooks = Get-Content -path "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json" | ConvertFrom-Json
-
-# 		try {
-# 			$hooks.developerMode = $false
-# 			$hooks.devMenuExtensionsEnabled = $false
-# 			$hooks.forceDebugMenuEnable = $false
-# 			$hooks.debugMenuDisabledV2 = $true
-# 		} catch {
-# 			$hooks | Add-Member -MemberType NoteProperty -Name 'developerMode' -Value $false
-# 			$hooks | Add-Member -MemberType NoteProperty -Name 'devMenuExtensionsEnabled' -Value $false
-# 			$hooks | Add-Member -MemberType NoteProperty -Name 'forceDebugMenuEnable' -Value $false
-# 			$hooks | Add-Member -MemberType NoteProperty -Name 'debugMenuDisabledV2' -Value $true
-# 		} finally {
-# 			$hooks | ConvertTo-Json | Set-Content $path
-# 		}
-# 	}
-# })
-
-# $cmbAuth.Add_SelectionChanged({
-# 	write-host "Auth changed"
-# 	$path = "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json"
-
-# 	if ($txtSelectedProfile.text -eq '') {
-# 		Write-Host 'No profile selected to change auth stack for.'
-# 	} else {
-# 		Write-Host "Changing auth stack to $($cmbAuth.SelectedItem) for profile $($txtSelectedProfile.text)"
-# 		$hooks = Get-Content -path "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json" | ConvertFrom-Json
-
-# 		if ($cmbAuth.SelectedItem -eq 'WAM') {
-# 			write-host 'wam'
-
-# 			try {
-# 				$hooks.authHoldUserOnAdal = $false
-# 				$hooks.authMigrationRevertToAdal = $false
-# 			} catch {
-# 				$hooks | Add-Member -MemberType NoteProperty -Name 'authHoldUserOnAdal' -Value $false
-# 				$hooks | Add-Member -MemberType NoteProperty -Name 'authMigrationRevertToAdal' -Value $false
-# 			} finally {
-# 				$hooks | ConvertTo-Json | Set-Content $path
-# 			}
-
-# 			write-host $hooks
-# 		} elseif ($cmbAuth.selectedItem -eq 'ADAL') {
-# 			write-host 'adal'
-
-# 			try {
-# 				$hooks.authHoldUserOnAdal = $true
-# 				$hooks.authMigrationRevertToAdal = $true
-# 			} catch {
-# 				$hooks | Add-Member -MemberType NoteProperty -Name 'authHoldUserOnAdal' -Value $true
-# 				$hooks | Add-Member -MemberType NoteProperty -Name 'authMigrationRevertToAdal' -Value $true
-# 			} finally {
-# 				$hooks | ConvertTo-Json | Set-Content $path
-# 			}
-
-# 			write-host $hooks
-# 		}
-# 	}
-# })
-
-# $cmbRing.Add_SelectionChanged({
-# 	write-host 'Ring changed'
-# 	$path = "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json"
-
-# 	if ($txtSelectedProfile.text -eq '') {
-# 		Write-Host 'No profile selected to change the ring for.'
-# 	} else {
-# 		Write-Host "Changing ring to $($cmbRing.SelectedItem) for profile $($txtSelectedProfile.text)"
-# 		$hooks = Get-Content -path "$($env:localappdata)\Microsoft\Teams\CustomProfiles\$($txtSelectedProfile.text)\AppData\Roaming\Microsoft\Teams\hooks.json" | ConvertFrom-Json
-		
-# 		if ($cmbRing.SelectedItem -eq 'General') {
-# 			write-host 'General'
-	
-# 			try {
-# 				$hooks.settingsForWebApp = "ring=general"
-# 			} catch {
-# 				$hooks | Add-Member -MemberType NoteProperty -Name 'settingsForWebApp' -Value 'ring=general'
-# 			} finally {
-# 				$hooks | ConvertTo-Json | Set-Content $path
-# 			}
-
-# 			write-host $hooks
-# 		} elseif ($cmbRing.SelectedItem -eq 'Ring3_6') {
-# 			write-host 'Ring3_6'
-
-# 			try {
-# 				$hooks.settingsForWebApp = "ring=ring3_6"
-# 			} catch {
-# 				$hooks | Add-Member -MemberType NoteProperty -Name 'settingsForWebApp' -Value 'ring=ring3_6'
-# 			} finally {
-# 				$hooks | ConvertTo-Json | Set-Content $path
-# 			}
-
-# 			write-host $hooks 
-# 		}
-# 	}
-# })
 
 $btnStart.Add_Click({
   if ($txtSelectedProfile.text -eq "") {
@@ -2800,8 +2613,6 @@ $btnLocation.Add_Click({
 })
 
 $btnDelete.Add_Click({
-	# write-host 'delete'
-
 	if ($txtSelectedProfile.text -eq "") {
 		write-host 'No profile selected to delete.'
 	} else {
@@ -2825,9 +2636,6 @@ $btnDelete.Add_Click({
 			$btnLocation.IsEnabled = $false
 			$btnDelete.IsEnabled = $false
 			$listProfiles.IsEnabled = $false
-			# $cmbAuth.IsEnabled = $false
-			# $cmbRing.IsEnabled = $false
-			# $chkDev.IsEnabled = $false
 		}
 	}
 })
@@ -2842,9 +2650,6 @@ $btnCreate.Add_Click({
 		$btnLocation.IsEnabled = $true
 		$btnDelete.IsEnabled = $true
 		$listProfiles.IsEnabled = $true
-		# $cmbAuth.IsEnabled = $true
-		# $cmbRing.IsEnabled = $true
-		# $chkDev.IsEnabled = $true
 	}
 
   if ($profileName -eq "") {
