@@ -14,16 +14,19 @@ Download tms-pmngr.exe
 tms-pmngr.exe
 
 ### Create profile
-![Create profile](https://i.postimg.cc/qRGLHn8z/profiles-create.png "Create profile")
+![Create profile](https://i.postimg.cc/G2sW-B0Tj/create-profile.png "Create profile")
 
 ### Start profile
-![Start profile](https://i.postimg.cc/SsZMGG67/profiles-start.png "Start profile")
+![Start profile](https://i.postimg.cc/4460jQ6n/start-profile.png "Start profile")
 
 ### Clear profile cache
-![Clear profile cache](https://i.postimg.cc/yNLxq8D7/profiles-cache.png "Clear profile cache")
+![Clear profile cache](https://i.postimg.cc/5y4DsXks/clear-cache.png "Clear profile cache")
 
 ### Open profile location
-![Open profile location](https://i.postimg.cc/C1dCBKXK/profiles-location.png "Open profile location")
+![Open profile location](https://i.postimg.cc/J0RcJJdz/profile-location.png "Open profile location")
+
+### Open profile location
+![Delete profile](https://i.postimg.cc/QCrmNvrw/delete-profile.png "Delete profile")
 
 
 ## Version
@@ -33,7 +36,7 @@ tms-pmngr.exe
 Mihai Filip (voidthevillain)
 
 ## License
-MIT.
+MIT
 
 ## Credits
 CMD version - https://gist.github.com/DanielSmon/cc3fa072857f0272257a5fd451768c3a
