@@ -25,7 +25,7 @@ tms-pmngr.exe
 ### Open profile location
 ![Open profile location](https://i.postimg.cc/J0RcJJdz/profile-location.png "Open profile location")
 
-### Open profile location
+### Delete profile
 ![Delete profile](https://i.postimg.cc/QCrmNvrw/delete-profile.png "Delete profile")
 
 
