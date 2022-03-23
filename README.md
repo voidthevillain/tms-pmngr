@@ -1,4 +1,4 @@
-# TMS - Profile Manager
+# tms-pmngr
 ![TMS-NINJA](https://i.postimg.cc/qqhGY7xF/tms-ninja-stroke-250.png "TMS-NINJA")
 
 ### Description
