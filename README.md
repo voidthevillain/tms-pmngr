@@ -1,5 +1,5 @@
 # tms-pmngr
-![TMS-NINJA](https://i.postimg.cc/qqhGY7xF/tms-ninja-stroke-250.png "TMS-NINJA")
+<!-- ![TMS-NINJA](https://i.postimg.cc/qqhGY7xF/tms-ninja-stroke-250.png "TMS-NINJA") -->
 
 ### Description
 Tool for managing Teams profiles.
