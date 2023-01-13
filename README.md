@@ -3,6 +3,9 @@ A tool to manage Teams profiles on Windows.
 
 ![TMS-PMNGR logo](https://i.postimg.cc/GpSb3nXV/Frame-7-2.png)
 
+## Important
+> **This tool is not supported by Microsoft.**
+
 ## Requirements
 - Windows OS
 
